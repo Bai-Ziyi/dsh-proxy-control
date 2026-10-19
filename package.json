@@ -1,6 +1,6 @@
 {
   "name": "dsh-proxy-control",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Pre-launch and runtime HTTP proxy control for DeepSeek Harness: writes the proxy into the user-level .env so the launcher and the first requests are proxied, then keeps that file in sync from a switch in the Plugins page.",
   "type": "module",
   "main": "index.js",
@@ -19,6 +19,7 @@
     "locale/*.json",
     "icon.svg",
     "README.md",
+    "README.en.md",
     "LICENSE"
   ],
   "keywords": [
