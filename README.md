@@ -13,7 +13,7 @@ DSH 在启动时、第一个插件挂载之前，会从继承的环境或 `$DSH_
 - 通过 `@deepseek-ai/dsh-http-proxy` 的公开接口 `installProxyFromEnvironment` 应用到当前进程，模型请求、网页抓取与 MCP HTTP 请求无需重启即可生效。
 - 关闭开关时移除代理行并安装直连策略；下次启动也是直连。
 - 本机回环地址始终直连；只接受 `http://` 与 `https://` 代理。
-- 无运行时依赖、无构建步骤、纯 ESM。
+- 无构建步骤、纯 ESM；它导入的三个 DSH 包按内置版本声明为依赖。
 
 ## 安装
 
@@ -57,8 +57,12 @@ dsh plugin --profile web add github:Bai-Ziyi/dsh-proxy-control
 ## 兼容性
 
 - DSH `0.2.x`；在 `0.2.1-rc.2` 与本地 HTTP 代理上测试过。
-- 使用 `@deepseek-ai/dsh-http-proxy`（`installProxyFromEnvironment`）、`@deepseek-ai/dsh-home-paths`（`resolveDshHome`）与 `@deepseek-ai/schemastery` 的公开导出。它们由 DSH 安装解析；本包刻意不声明为依赖，避免装出第二份导致模块实例分叉。
+- 使用 `@deepseek-ai/dsh-http-proxy`（`installProxyFromEnvironment`）、`@deepseek-ai/dsh-home-paths`（`resolveDshHome`）与 `@deepseek-ai/schemastery` 的公开导出。它们以 DSH `0.2.1-rc.2` 内置版本声明为依赖（见[依赖](#依赖)）；profile 安装按真实路径解析本包，不能依赖 Host 的包树。
 - 客户端半侧注册到 `plugins.row.config`，需要同版本 DSH 的「插件」页（`@deepseek-ai/dsh-client-ui-plugin-manager`）。
+
+## 依赖
+
+插件把用到的三个 `@deepseek-ai/*` 包声明为依赖，版本与 DSH `0.2.1-rc.2` 内置的一致，而不是 peerDependencies。profile 安装会按真实路径解析本插件，无法依赖 Host 的包树；而 profile 的 `autoInstallPeers: false` 又不会安装 peer，导入会失败。升级 DSH 时请同步升级这三个版本。
 
 ## 开发
 

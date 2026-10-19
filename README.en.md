@@ -13,7 +13,7 @@ DeepSeek Harness resolves its outbound proxy **once at launch**, from the inheri
 - Applies the same proxy to the running process through `@deepseek-ai/dsh-http-proxy`'s public `installProxyFromEnvironment`, so model, web-fetch and MCP HTTP requests use it without a restart.
 - Turning the switch off removes the proxy lines and installs a direct policy; the next launch starts direct.
 - Loopback always bypasses the proxy. Only `http://` and `https://` proxy URLs are accepted.
-- No runtime dependencies, no build step, plain ESM.
+- No build step, plain ESM; the three DSH packages it imports are declared as dependencies at the bundled versions.
 
 ## Install
 
@@ -59,8 +59,12 @@ Because the file is written before the next launch, the launcher phase is covere
 ## Compatibility
 
 - DSH `0.2.x`; tested on `0.2.1-rc.2` with a local HTTP proxy.
-- Uses the public exports of `@deepseek-ai/dsh-http-proxy` (`installProxyFromEnvironment`), `@deepseek-ai/dsh-home-paths` (`resolveDshHome`) and `@deepseek-ai/schemastery`. These resolve from the DSH installation; the package deliberately declares no dependencies on them so it cannot install a second copy.
+- Uses the public exports of `@deepseek-ai/dsh-http-proxy` (`installProxyFromEnvironment`), `@deepseek-ai/dsh-home-paths` (`resolveDshHome`) and `@deepseek-ai/schemastery`. These are declared as dependencies at the versions bundled with DSH `0.2.1-rc.2` (see [Dependencies](#dependencies)); a profile install resolves this package by its real path, so it cannot rely on the Host's package tree.
 - The client half registers into `plugins.row.config`; it requires the Plugins page (`@deepseek-ai/dsh-client-ui-plugin-manager`) from the same DSH version.
+
+## Dependencies
+
+The plugin declares the three `@deepseek-ai/*` packages it imports at the versions bundled with DSH `0.2.1-rc.2`, rather than peer dependencies. A profile install resolves this package by its real path, so it cannot rely on the Host's package tree; with `autoInstallPeers: false` in the profile, peer declarations would leave the imports unresolved. Keep these versions in step with the DSH release you run.
 
 ## Development
 
