@@ -1,0 +1,60 @@
+{
+  "name": "dsh-proxy-control",
+  "version": "0.1.1",
+  "description": "Pre-launch and runtime HTTP proxy control for DeepSeek Harness: writes the proxy into the user-level .env so the launcher and the first requests are proxied, then keeps that file in sync from a switch in the Plugins page.",
+  "type": "module",
+  "main": "index.js",
+  "exports": {
+    ".": "./index.js",
+    "./client": "./client.js",
+    "./locale/*.json": "./locale/*.json",
+    "./icon": "./icon.svg",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "index.js",
+    "lib",
+    "client.js",
+    "cordis.patch.yml",
+    "locale/*.json",
+    "icon.svg",
+    "README.md",
+    "LICENSE"
+  ],
+  "keywords": [
+    "deepseek-harness",
+    "dsh",
+    "dsh-plugin",
+    "cordis",
+    "proxy",
+    "network",
+    "undici"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Bai-Ziyi/dsh-proxy-control.git"
+  },
+  "homepage": "https://github.com/Bai-Ziyi/dsh-proxy-control",
+  "bugs": {
+    "url": "https://github.com/Bai-Ziyi/dsh-proxy-control/issues"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "test": "node test/env.test.js"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "immediately": true,
+      "inject": [
+        "@deepseek-ai/dsh-client-ui-plugin-manager"
+      ]
+    }
+  }
+}

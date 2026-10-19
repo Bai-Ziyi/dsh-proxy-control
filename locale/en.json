@@ -1,0 +1,6 @@
+{
+  "meta": {
+    "title": "Proxy Control",
+    "description": "Turn the outbound HTTP proxy on or off and edit its URL."
+  }
+}

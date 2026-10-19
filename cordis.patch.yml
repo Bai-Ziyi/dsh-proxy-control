@@ -1,0 +1,3 @@
+- insert:
+    - id: proxy-control
+      name: 'dsh-proxy-control'
