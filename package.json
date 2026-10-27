@@ -1,12 +1,12 @@
 {
   "name": "dsh-proxy-control",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "Pre-launch and runtime HTTP proxy control for DeepSeek Harness: writes the proxy into the user-level .env so the launcher and the first requests are proxied, then keeps that file in sync from a switch in the Plugins page.",
   "type": "module",
   "main": "index.js",
   "dependencies": {
-    "@deepseek-ai/dsh-home-paths": "0.2.1-rc.2",
-    "@deepseek-ai/dsh-http-proxy": "0.2.1-rc.2",
+    "@deepseek-ai/dsh-home-paths": "0.2.1-rc.3",
+    "@deepseek-ai/dsh-http-proxy": "0.2.1-rc.3",
     "@deepseek-ai/schemastery": "3.18.5"
   },
   "exports": {

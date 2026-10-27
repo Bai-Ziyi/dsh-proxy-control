@@ -56,13 +56,13 @@ dsh plugin --profile web add github:Bai-Ziyi/dsh-proxy-control
 
 ## 兼容性
 
-- DSH `0.2.x`；在 `0.2.1-rc.2` 与本地 HTTP 代理上测试过。
-- 使用 `@deepseek-ai/dsh-http-proxy`（`installProxyFromEnvironment`）、`@deepseek-ai/dsh-home-paths`（`resolveDshHome`）与 `@deepseek-ai/schemastery` 的公开导出。它们以 DSH `0.2.1-rc.2` 内置版本声明为依赖（见[依赖](#依赖)）；profile 安装按真实路径解析本包，不能依赖 Host 的包树。
+- DSH `0.2.x`；在 `0.2.1-rc.3` 上测试过加载与开关同步（网络路径沿用 `0.2.1-rc.2` 的本地 HTTP 代理测试）。
+- 使用 `@deepseek-ai/dsh-http-proxy`（`installProxyFromEnvironment`）、`@deepseek-ai/dsh-home-paths`（`resolveDshHome`）与 `@deepseek-ai/schemastery` 的公开导出。它们以 DSH `0.2.1-rc.3` 内置版本声明为依赖（见[依赖](#依赖)）；profile 安装按真实路径解析本包，不能依赖 Host 的包树。
 - 客户端半侧注册到 `plugins.row.config`，需要同版本 DSH 的「插件」页（`@deepseek-ai/dsh-client-ui-plugin-manager`）。
 
 ## 依赖
 
-插件把用到的三个 `@deepseek-ai/*` 包声明为依赖，版本与 DSH `0.2.1-rc.2` 内置的一致，而不是 peerDependencies。profile 安装会按真实路径解析本插件，无法依赖 Host 的包树；而 profile 的 `autoInstallPeers: false` 又不会安装 peer，导入会失败。升级 DSH 时请同步升级这三个版本。
+插件把用到的三个 `@deepseek-ai/*` 包声明为依赖，版本与 DSH `0.2.1-rc.3` 内置的一致，而不是 peerDependencies。profile 安装会按真实路径解析本插件，无法依赖 Host 的包树；而 profile 的 `autoInstallPeers: false` 又不会安装 peer，导入会失败。升级 DSH 时请同步升级这三个版本。
 
 ## 开发
 

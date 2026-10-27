@@ -58,13 +58,13 @@ Because the file is written before the next launch, the launcher phase is covere
 
 ## Compatibility
 
-- DSH `0.2.x`; tested on `0.2.1-rc.2` with a local HTTP proxy.
-- Uses the public exports of `@deepseek-ai/dsh-http-proxy` (`installProxyFromEnvironment`), `@deepseek-ai/dsh-home-paths` (`resolveDshHome`) and `@deepseek-ai/schemastery`. These are declared as dependencies at the versions bundled with DSH `0.2.1-rc.2` (see [Dependencies](#dependencies)); a profile install resolves this package by its real path, so it cannot rely on the Host's package tree.
+- DSH `0.2.x`; tested on `0.2.1-rc.3` for loading and switch synchronization (the network path was tested on `0.2.1-rc.2` with a local HTTP proxy).
+- Uses the public exports of `@deepseek-ai/dsh-http-proxy` (`installProxyFromEnvironment`), `@deepseek-ai/dsh-home-paths` (`resolveDshHome`) and `@deepseek-ai/schemastery`. These are declared as dependencies at the versions bundled with DSH `0.2.1-rc.3` (see [Dependencies](#dependencies)); a profile install resolves this package by its real path, so it cannot rely on the Host's package tree.
 - The client half registers into `plugins.row.config`; it requires the Plugins page (`@deepseek-ai/dsh-client-ui-plugin-manager`) from the same DSH version.
 
 ## Dependencies
 
-The plugin declares the three `@deepseek-ai/*` packages it imports at the versions bundled with DSH `0.2.1-rc.2`, rather than peer dependencies. A profile install resolves this package by its real path, so it cannot rely on the Host's package tree; with `autoInstallPeers: false` in the profile, peer declarations would leave the imports unresolved. Keep these versions in step with the DSH release you run.
+The plugin declares the three `@deepseek-ai/*` packages it imports at the versions bundled with DSH `0.2.1-rc.3`, rather than peer dependencies. A profile install resolves this package by its real path, so it cannot rely on the Host's package tree; with `autoInstallPeers: false` in the profile, peer declarations would leave the imports unresolved. Keep these versions in step with the DSH release you run.
 
 ## Development
 
